@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.repository;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
