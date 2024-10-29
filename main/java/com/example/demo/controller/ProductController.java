@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.repository.Repository;
+import com.example.demo.repository.ProductRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class Controller {
-    private final Repository repository;
+public class ProductController {
+    private final ProductRepository repository;
 
-    public Controller(Repository repository) {
+    public ProductController(ProductRepository repository) {
         this.repository = repository;
     }
 

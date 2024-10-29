@@ -10,11 +10,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Repository
-public class Repository {
-    String sql = read("query.sql");
-    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+public class ProductRepository {
+    private final String sql = read("query.sql");
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public Repository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public ProductRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
@@ -30,6 +30,6 @@ public class Repository {
     public List<String> find(String name) {
         Map<String, Object> map = new HashMap<>();
         map.put("name", name);
-        return namedParameterJdbcTemplate.query(sql, map, (rs, rowNum) -> rs.getString("product_name"));
+        return namedParameterJdbcTemplate.queryForList(sql, map, String.class);
     }
 }
