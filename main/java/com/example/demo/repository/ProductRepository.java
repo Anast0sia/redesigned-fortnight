@@ -1,7 +1,5 @@
 package com.example.demo.repository;
 
-import com.example.demo.Customers;
-import com.example.demo.Orders;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.core.io.ClassPathResource;

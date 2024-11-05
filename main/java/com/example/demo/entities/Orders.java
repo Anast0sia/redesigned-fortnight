@@ -1,9 +1,8 @@
-package com.example.demo;
+package com.example.demo.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity
