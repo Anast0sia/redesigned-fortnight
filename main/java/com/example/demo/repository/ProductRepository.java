@@ -1,21 +1,23 @@
 package com.example.demo.repository;
 
+import com.example.demo.Customers;
+import com.example.demo.Orders;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import java.io.*;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Repository
 public class ProductRepository {
     private final String sql = read("query.sql");
-    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    @PersistenceContext
+    private final EntityManager manager;
 
-    public ProductRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    public ProductRepository(EntityManager manager) {
+        this.manager = manager;
     }
 
     private static String read(String scriptFileName) {
@@ -27,9 +29,7 @@ public class ProductRepository {
         }
     }
 
-    public List<String> find(String name) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", name);
-        return namedParameterJdbcTemplate.queryForList(sql, map, String.class);
+    public List find(String name) {
+        return manager.createNativeQuery(sql).setParameter("name", name).getResultList();
     }
 }
